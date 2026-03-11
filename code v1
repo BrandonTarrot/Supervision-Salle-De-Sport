@@ -1,0 +1,34 @@
+#include <DHT.h>
+
+#define DHTPIN 4        // GPIO utilisé
+#define DHTTYPE DHT11  // Type de capteur
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  delay(1000);          // Stabilisation ESP32
+  dht.begin();
+
+  Serial.println("ESP32 + DHT11 OK");
+}
+
+void loop() {
+  delay(2000);
+
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+
+  if (isnan(h) || isnan(t)) {
+    Serial.println("Erreur lecture DHT11");
+    return;
+  }
+
+  Serial.print("Temperature : ");
+  Serial.print(t);
+  Serial.println(" °C");
+
+  Serial.print("Humidite : ");
+  Serial.print(h);
+  Serial.println(" %");
+}
