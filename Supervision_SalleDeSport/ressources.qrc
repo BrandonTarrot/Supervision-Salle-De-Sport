@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/images">
-        <file>Ressources/Rick.jpg</file>
+        <file>Ressources/Icone.jpg</file>
         <file>Ressources/AdminLogo.jpg</file>
+        <file>Ressources/ventilo_off.png</file>
+        <file>Ressources/ventilo_on.gif</file>
     </qresource>
 </RCC>

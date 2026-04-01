@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlTableModel>
+#include <QTimer>  // Pour l'effet de rafraîchissement
+#include <QStandardItemModel>  // ← Pour l'historique
+#include <QDateTime>
+#include <QMovie>      // ← ajouter avec les autres includes
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class AdminWindow; }
@@ -18,17 +22,29 @@ public:
     ~AdminWindow();
 
 private slots:
-    void on_pushButton_Plus_clicked();   // Augmente la température
-    void on_pushButton_Moins_clicked();  // Diminue la température
+    void on_pushButton_Affichage_clicked();   // Onglet Affichage
+    void on_pushButton_Gestion_clicked();     // Onglet Gestion
+    void on_pushButton_Historique_clicked();  // Onglet Historique
+    void on_pushButton_Luminosite_clicked();  // Charge table luminosité
+    void on_pushButton_Temperature_clicked(); // Charge table température
+    void on_pushButton_Presence_clicked();    // Charge table présence
+    void on_pushButton_Actualiser_clicked();  // Actualise avec effet flash
+    void on_boutonGestion_clicked();          // Slot unique boutons Gestion
 
 private:
     Ui::AdminWindow *ui;
-    QSqlDatabase db;           // Connexion BDD
-    QSqlTableModel *model;     // Modèle de données pour le TableView
-    void connecterBDD();                        // Initialise la connexion
-    void chargerDonnees();                      // Charge les données dans le TableView
-    void modifierTemperature(double variation); // Fonction commune + et -
-    void afficherTemperature();                 // Affiche la valeur dans le label
+    QSqlDatabase db;
+    QSqlTableModel *model;
+    QMovie *movieVentilo;
+    void connecterBDD();
+    void chargerTable(const QString &nomTable);
+    void afficherWidgetsAffichage();
+    void afficherWidgetsGestion();
+    void afficherWidgetsHistorique();
+    void initialiserTableauGestion();
+    void chargerHistorique();              // Charge les modifications récentes
 };
 
 #endif // ADMINWINDOW_H
+
+//adminwindow.h

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>497</width>
-    <height>355</height>
+    <width>458</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>481</width>
-      <height>311</height>
+      <width>451</width>
+      <height>561</height>
      </rect>
     </property>
     <property name="title">
@@ -29,8 +29,8 @@
     <widget class="QLabel" name="label_Username">
      <property name="geometry">
       <rect>
-       <x>-20</x>
-       <y>30</y>
+       <x>30</x>
+       <y>80</y>
        <width>161</width>
        <height>61</height>
       </rect>
@@ -44,7 +44,7 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>Username :</string>
+      <string>Identifiant :</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -53,8 +53,8 @@
     <widget class="QLineEdit" name="lineEdit_Username_2">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>50</y>
+       <x>80</x>
+       <y>140</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -71,26 +71,36 @@
     <widget class="QPushButton" name="pushButton_Cancel">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>160</y>
-       <width>181</width>
-       <height>51</height>
+       <x>180</x>
+       <y>450</y>
+       <width>101</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #96bfff;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+}</string>
+     </property>
      <property name="text">
-      <string>Cancel</string>
+      <string>Annuler</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_Password">
      <property name="geometry">
       <rect>
-       <x>-20</x>
-       <y>90</y>
+       <x>60</x>
+       <y>180</y>
        <width>161</width>
        <height>61</height>
       </rect>
@@ -104,7 +114,7 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>Password :</string>
+      <string>Mot De Passe :</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -113,8 +123,8 @@
     <widget class="QPushButton" name="pushButton_Login">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>160</y>
+       <x>140</x>
+       <y>390</y>
        <width>181</width>
        <height>51</height>
       </rect>
@@ -122,17 +132,27 @@
      <property name="font">
       <font>
        <pointsize>12</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #6e97ff;
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+}</string>
+     </property>
      <property name="text">
-      <string>Login</string>
+      <string>Connexion</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_Password_2">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>110</y>
+       <x>80</x>
+       <y>240</y>
        <width>271</width>
        <height>31</height>
       </rect>
@@ -149,8 +169,8 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>280</y>
+       <x>10</x>
+       <y>530</y>
        <width>321</width>
        <height>16</height>
       </rect>
@@ -162,8 +182,8 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>10</y>
+       <x>20</x>
+       <y>20</y>
        <width>161</width>
        <height>16</height>
       </rect>
@@ -173,10 +193,169 @@
        <pointsize>12</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    color: #f0f6ff;
+}</string>
+     </property>
      <property name="text">
       <string>Accès Administrateur</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>261</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+       <underline>false</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    color: #FFFFFF;
+}</string>
+     </property>
+     <property name="text">
+      <string>Supervision Salle De Sport</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkBox_AfficherMDP">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>280</y>
+       <width>141</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Afficher Mot De Passe</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Password_Forgot">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>320</y>
+       <width>141</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <underline>true</underline>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    color: #5B7FD4;
+    text-decoration: underline;
+}</string>
+     </property>
+     <property name="text">
+      <string>&lt;a href=&quot;forgot&quot;&gt;Mot De Passe Oublié ?&lt;/a&gt;</string>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>-10</x>
+       <y>-10</y>
+       <width>511</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+    background-color: #84a6ff;
+    border-radius: 10px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>406</x>
+       <y>70</y>
+       <width>20</width>
+       <height>491</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+    background-color: #edf4ff;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>70</y>
+       <width>16</width>
+       <height>491</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+    background-color: #ffffff;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <zorder>frame</zorder>
+    <zorder>label_Username</zorder>
+    <zorder>lineEdit_Username_2</zorder>
+    <zorder>pushButton_Cancel</zorder>
+    <zorder>label_Password</zorder>
+    <zorder>pushButton_Login</zorder>
+    <zorder>lineEdit_Password_2</zorder>
+    <zorder>label</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label_3</zorder>
+    <zorder>checkBox_AfficherMDP</zorder>
+    <zorder>label_Password_Forgot</zorder>
+    <zorder>frame_2</zorder>
+    <zorder>frame_3</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -184,7 +363,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>497</width>
+     <width>458</width>
      <height>21</height>
     </rect>
    </property>

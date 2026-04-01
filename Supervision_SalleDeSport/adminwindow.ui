@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>754</width>
+    <height>541</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,19 +19,19 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
+      <width>751</width>
       <height>571</height>
      </rect>
     </property>
     <property name="title">
      <string>GroupBox</string>
     </property>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="label_Titre">
      <property name="geometry">
       <rect>
        <x>40</x>
        <y>10</y>
-       <width>401</width>
+       <width>151</width>
        <height>91</height>
       </rect>
      </property>
@@ -41,13 +41,13 @@
       </font>
      </property>
      <property name="text">
-      <string>Bienvenue sur la Page Administrateur</string>
+      <string>Administrateur</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="label_Logo">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>180</x>
        <y>30</y>
        <width>51</width>
        <height>51</height>
@@ -63,96 +63,184 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView">
+    <widget class="QTableView" name="tableView_Affichage">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>120</y>
-       <width>256</width>
-       <height>192</height>
+       <x>60</x>
+       <y>140</y>
+       <width>571</width>
+       <height>311</height>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QPushButton" name="pushButton_Affichage">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>520</y>
-       <width>71</width>
+       <x>60</x>
+       <y>100</y>
+       <width>181</width>
        <height>41</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>15</pointsize>
-      </font>
-     </property>
      <property name="text">
-      <string>pixmap</string>
+      <string>Affichage</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_Plus">
+    <widget class="QPushButton" name="pushButton_Historique">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>180</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Augmenter</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_Moins">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>210</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Diminuer</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>130</y>
-       <width>141</width>
+       <x>440</x>
+       <y>100</y>
+       <width>191</width>
        <height>41</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
-      <string>Température</string>
+      <string>Historique</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_Valeur">
+    <widget class="QPushButton" name="pushButton_Gestion">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>130</y>
-       <width>141</width>
+       <x>240</x>
+       <y>100</y>
+       <width>201</width>
        <height>41</height>
       </rect>
      </property>
-     <property name="font">
-      <font>
-       <pointsize>12</pointsize>
-      </font>
-     </property>
      <property name="text">
-      <string>X</string>
+      <string>Gestion</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_Luminosite">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>460</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Luminosité</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Temperature">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>460</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Température / Humidité</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Presence">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>460</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Présence</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Actualiser">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>140</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Actualiser</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget_Gestion">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>140</y>
+       <width>571</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView_Historique">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>140</y>
+       <width>571</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>140</y>
+       <width>20</width>
+       <height>311</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+    background-color: #84a6ff;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Ventilateur">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>270</y>
+       <width>81</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/ventilo_on.gif</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <zorder>tableView_Affichage</zorder>
+    <zorder>label_Titre</zorder>
+    <zorder>label_Logo</zorder>
+    <zorder>pushButton_Affichage</zorder>
+    <zorder>pushButton_Historique</zorder>
+    <zorder>pushButton_Gestion</zorder>
+    <zorder>pushButton_Luminosite</zorder>
+    <zorder>pushButton_Temperature</zorder>
+    <zorder>pushButton_Presence</zorder>
+    <zorder>pushButton_Actualiser</zorder>
+    <zorder>tableWidget_Gestion</zorder>
+    <zorder>tableView_Historique</zorder>
+    <zorder>frame</zorder>
+    <zorder>label_Ventilateur</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -160,7 +248,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>754</width>
      <height>21</height>
     </rect>
    </property>

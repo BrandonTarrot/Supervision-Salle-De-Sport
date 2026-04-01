@@ -3,6 +3,7 @@
 #include "adminwindow.h"
 #include <QMessageBox>
 #include <QApplication>
+#include "forgotpassword.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,8 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Masque les caractères du mot de passe
+    // Masque les caractères du mot de passe au démarrage
     ui->lineEdit_Password_2->setEchoMode(QLineEdit::Password);
+    ui->pushButton_Login->setCursor(Qt::PointingHandCursor);
+    ui->pushButton_Cancel->setCursor(Qt::PointingHandCursor);
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +49,22 @@ void MainWindow::on_pushButton_Cancel_clicked()
         QMessageBox::Yes | QMessageBox::No
     );
 
-    if (reponse == QMessageBox::Yes) {
+    if (reponse == QMessageBox::Yes)
         QApplication::quit();
-    }
+}
+
+// Bascule entre mot de passe visible et masqué
+void MainWindow::on_checkBox_AfficherMDP_toggled(bool checked)
+{
+    ui->lineEdit_Password_2->setEchoMode(
+        checked ? QLineEdit::Normal : QLineEdit::Password);
+}
+
+//mainwindow.cpp
+
+
+void MainWindow::on_label_Password_Forgot_linkActivated(const QString &/*link*/)
+{
+    forgotpassword *dlg = new forgotpassword(this);
+    dlg->exec();
 }
