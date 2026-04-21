@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    font-family: Arial;
+    background: #f4f6f9;
+}
+
+.menu a {
+    display: block;
+    margin: 20px;
+    padding: 15px;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}

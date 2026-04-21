@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+    font-family: Arial;
+}
+
+input {
+    width: 300px;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+}
