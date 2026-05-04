@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Ressources/Icone.jpg</file>
+        <file>Ressources/AdminLogo.jpg</file>
+        <file>Ressources/ventilo_off.png</file>
+        <file>Ressources/ventilo_on.gif</file>
+        <file>Ressources/bulb_off.png</file>
+        <file>Ressources/bulb_on.png</file>
+    </qresource>
+</RCC>
