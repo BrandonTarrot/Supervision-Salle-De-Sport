@@ -1,0 +1,10 @@
+debug/main.o
+debug/mainwindow.o
+debug/adminwindow.o
+debug/forgotpassword.o
+debug/smtp.o
+debug/qrc_ressources.o
+debug/moc_mainwindow.o
+debug/moc_adminwindow.o
+debug/moc_forgotpassword.o
+debug/moc_smtp.o

@@ -1,0 +1,10 @@
+release/main.o
+release/mainwindow.o
+release/adminwindow.o
+release/forgotpassword.o
+release/smtp.o
+release/qrc_ressources.o
+release/moc_mainwindow.o
+release/moc_adminwindow.o
+release/moc_forgotpassword.o
+release/moc_smtp.o
