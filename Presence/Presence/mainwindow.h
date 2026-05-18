@@ -14,10 +14,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-    // ← Pour rendre le label "Mot de passe oublié ?" cliquable
     bool eventFilter(QObject *obj, QEvent *event) override;
+    ~MainWindow();
 
 private slots:
     void on_pushButton_Login_clicked();
@@ -29,22 +27,19 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    // ── Compteurs de blocage ──
     int m_tentativesEchouees = 0;
     int m_niveauBlocage      = 0;
     int m_secondesRestantes  = 0;
 
-    // ── Code backup ──
     bool    m_backupUtilise    = false;
     int     m_backupGeneration = 0;
     QString m_codeBackupActuel = "";
 
-    // ── Timer ──
     QTimer *m_timer;
 
-    // ── Méthodes utilitaires ──
     void    demarrerBlocage();
     void    activerInterface(bool actif);
+    void    gererEchecConnexion();
     QString formatTemps(int secondes);
     QString genererCodeBackup();
     void    regenererCode();

@@ -5,6 +5,7 @@
 
 #include <QMessageBox>
 #include <QSqlDatabase>
+#include <QSqlQuery>
 #include <QSqlError>
 #include <QLineEdit>
 #include <QDate>
@@ -15,10 +16,24 @@
 #include <QDateTime>
 #include <QEvent>
 #include <QMouseEvent>
+#include <QMap>
 
-// ══════════════════════════════════════════════
-//  Génération du code backup hebdomadaire
-// ══════════════════════════════════════════════
+// Hash SHA-256 des mots de passe autorisés
+static const QMap<QString, QString> HASH_AUTORISES = {
+    { "user",           "7f26736a48133dac5258c207789af276e79fee4b51aeb715428b59d66a0ddc8b" },
+    { "Administrateur", "REMPLACER_PAR_LE_HASH_SHA256_DU_MOT_DE_PASSE_ADMIN" }
+};
+
+// Utilitaire : retourne le hash SHA-256
+static QString sha256(const QString &texte)
+{
+    return QCryptographicHash::hash(
+        texte.toUtf8(),
+        QCryptographicHash::Sha256
+    ).toHex();
+}
+
+// Génération du code backup hebdomadaire
 QString MainWindow::genererCodeBackup()
 {
     const QString CLE_SECRETE = "PresenceSport#2026!";
@@ -45,9 +60,7 @@ QString MainWindow::genererCodeBackup()
         .arg(code.right(4));
 }
 
-// ══════════════════════════════════════════════
-//  Régénère un nouveau code après utilisation ou échec
-// ══════════════════════════════════════════════
+// Régénère un nouveau code après utilisation ou échec
 void MainWindow::regenererCode()
 {
     m_backupGeneration++;
@@ -63,9 +76,7 @@ void MainWindow::regenererCode()
             .arg(m_backupGeneration));
 }
 
-// ══════════════════════════════════════════════
-//  Constructeur
-// ══════════════════════════════════════════════
+// Constructeur
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -73,21 +84,21 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->lineEdit_Password->setEchoMode(QLineEdit::Password);
 
-    // ── Timer ──
+    // Timer
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
     connect(m_timer, &QTimer::timeout, this, &MainWindow::onTimerTick);
 
-    // ── Label "Mot de passe oublié ?" → cliquable ──
+    // Label "Mot de passe oublié ?" cliquable
     ui->label_5->setCursor(Qt::PointingHandCursor);
     ui->label_5->setStyleSheet(
         "QLabel { color: #5555cc; text-decoration: underline; }"
         "QLabel:hover { color: #cc0000; }"
     );
-    ui->label_5->installEventFilter(this); // Capte le clic souris
+    ui->label_5->installEventFilter(this);
 
-    // ── Style bouton Backup ──
-    ui->pushButton_Backup->setText("Accès Administrateur");
+    // Style bouton Backup
+    ui->pushButton_Backup->setText("Accès Utilisateur");
     ui->pushButton_Backup->setToolTip(
         QString("Code backup — Génération #%1\n"
                 "Consultez Qt Creator → Application Output")
@@ -106,34 +117,33 @@ MainWindow::MainWindow(QWidget *parent)
         "QPushButton:pressed { background-color: #c0392b; }"
     );
 
-    // ── Génération du premier code backup ──
+    // Génération du premier code backup
     m_codeBackupActuel = genererCodeBackup();
     qDebug() << "=== CODE BACKUP INITIAL ===" << m_codeBackupActuel
              << "| Génération #" << m_backupGeneration;
 
-    // ── Connexion BDD ──
+    // Connexion BDD
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("172.19.6.120");
     db.setPort(3306);
     db.setDatabaseName("supervision_salle_de_sport2");
     db.setUserName("api");
     db.setPassword("api");
+    db.setConnectOptions("");
 
     if (!db.open())
         QMessageBox::critical(this, "Erreur BDD",
             "Impossible de se connecter :\n" + db.lastError().text());
 }
 
-// ══════════════════════════════════════════════
-//  EventFilter → détecte le clic sur le label
-// ══════════════════════════════════════════════
+// EventFilter → détecte le clic sur le label
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    if (obj == ui->label_5 && event->type() == QEvent::MouseButtonPress) {
+    if (obj == ui->label_5 && event->type() == QEvent::MouseButtonPress)
+    {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-        if (mouseEvent->button() == Qt::LeftButton) {
-
-            // Ouvre le dialog mot de passe oublié avec le code backup actuel
+        if (mouseEvent->button() == Qt::LeftButton)
+        {
             mot_de_passe_oublie *dialog =
                 new mot_de_passe_oublie(m_codeBackupActuel, this);
             dialog->exec();
@@ -144,11 +154,13 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return QMainWindow::eventFilter(obj, event);
 }
 
+// Destructeur
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+// Formate secondes → mm:ss ou hh:mm:ss
 QString MainWindow::formatTemps(int secondes)
 {
     int h = secondes / 3600;
@@ -163,6 +175,7 @@ QString MainWindow::formatTemps(int secondes)
             .arg(m, 2, 10, QChar('0')).arg(s, 2, 10, QChar('0'));
 }
 
+// Active ou désactive les champs
 void MainWindow::activerInterface(bool actif)
 {
     ui->lineEdit_User_Name->setEnabled(actif);
@@ -170,12 +183,14 @@ void MainWindow::activerInterface(bool actif)
     ui->pushButton_Login->setEnabled(actif);
 }
 
+// Démarre le blocage progressif
 void MainWindow::demarrerBlocage()
 {
     m_niveauBlocage++;
     m_tentativesEchouees = 0;
 
-    switch (m_niveauBlocage) {
+    switch (m_niveauBlocage)
+    {
         case 1:  m_secondesRestantes = 60;   break;
         case 2:  m_secondesRestantes = 300;  break;
         default: m_secondesRestantes = 3600; break;
@@ -192,15 +207,17 @@ void MainWindow::demarrerBlocage()
     QMessageBox::critical(this, "Accès bloqué",
         QString("Trop de tentatives échouées.\n"
                 "Accès bloqué pendant %1.\n\n"
-                "Utilisez Accès Administrateur\n"
+                "Utilisez Accès Utilisateur\n"
                 "   ou cliquez sur 'Mot de passe oublié ?'")
             .arg(duree));
 
+    ui->statusbar->setStyleSheet("color: black;");
     ui->statusbar->showMessage(
         QString("Accès bloqué — Réessayez dans : %1")
             .arg(formatTemps(m_secondesRestantes)));
 }
 
+// Tick toutes les secondes
 void MainWindow::onTimerTick()
 {
     m_secondesRestantes--;
@@ -209,20 +226,45 @@ void MainWindow::onTimerTick()
         QString("Accès bloqué — Réessayez dans : %1")
             .arg(formatTemps(m_secondesRestantes)));
 
-    if (m_secondesRestantes <= 0) {
+    if (m_secondesRestantes <= 0)
+    {
         m_timer->stop();
         activerInterface(true);
         ui->lineEdit_Password->clear();
         ui->lineEdit_User_Name->clear();
         ui->lineEdit_User_Name->setFocus();
+        ui->statusbar->setStyleSheet("color: red; font-weight: bold;");
         ui->statusbar->showMessage("Accès débloqué. Vous pouvez réessayer.");
     }
 }
 
+// Gestion des échecs de connexion
+void MainWindow::gererEchecConnexion()
+{
+    m_tentativesEchouees++;
+
+    if (m_tentativesEchouees >= 3)
+    {
+        demarrerBlocage();
+    }
+    else
+    {
+        int restantes = 3 - m_tentativesEchouees;
+        QMessageBox::critical(this, "Échec",
+            QString("Identifiant ou mot de passe incorrect.\n"
+                    "%1 tentative(s) restante(s) avant blocage.")
+                .arg(restantes));
+
+        ui->lineEdit_Password->clear();
+        ui->lineEdit_User_Name->setFocus();
+    }
+}
+
+// Bouton Accès Utilisateur (code backup)
 void MainWindow::on_pushButton_Backup_clicked()
 {
     QInputDialog dialog(this);
-    dialog.setWindowTitle("Accès Administrateur");
+    dialog.setWindowTitle("Accès Utilisateur");
     dialog.setLabelText(
         QString("Entrez le code backup administrateur\n"
                 "(Génération #%1) :").arg(m_backupGeneration));
@@ -234,8 +276,8 @@ void MainWindow::on_pushButton_Backup_clicked()
 
     QString codeEntre = dialog.textValue().trimmed();
 
-    if (codeEntre == m_codeBackupActuel && !m_backupUtilise) {
-
+    if (codeEntre == m_codeBackupActuel && !m_backupUtilise)
+    {
         m_backupUtilise = true;
 
         if (m_timer->isActive())
@@ -264,13 +306,16 @@ void MainWindow::on_pushButton_Backup_clicked()
         this->show();
 
         regenererCode();
-
-    } else if (codeEntre == m_codeBackupActuel && m_backupUtilise) {
+    }
+    else if (codeEntre == m_codeBackupActuel && m_backupUtilise)
+    {
         QMessageBox::critical(this, "Code déjà utilisé",
             QString("Le code Génération #%1 a déjà été utilisé.\n"
                     "Consultez Qt Creator → Application Output.")
                 .arg(m_backupGeneration));
-    } else {
+    }
+    else
+    {
         QMessageBox::critical(this, "Code incorrect",
             "Code backup invalide.\n\n"
             "Pour des raisons de sécurité, le code a été régénéré.\n"
@@ -280,17 +325,31 @@ void MainWindow::on_pushButton_Backup_clicked()
     }
 }
 
+// Bouton Login
 void MainWindow::on_pushButton_Login_clicked()
 {
     QString id  = ui->lineEdit_User_Name->text().trimmed();
     QString mdp = ui->lineEdit_Password->text();
 
-    if (id.isEmpty() || mdp.isEmpty()) {
+    if (id.isEmpty() || mdp.isEmpty())
+    {
         QMessageBox::warning(this, "Erreur", "Veuillez remplir tous les champs.");
         return;
     }
 
-    if (id == "user" && mdp == "V9!rA7#kL2@pQ8") {
+    // Login inconnu → échec immédiat
+    if (!HASH_AUTORISES.contains(id))
+    {
+        gererEchecConnexion();
+        return;
+    }
+
+    // Comparaison des hash SHA-256
+    QString hashSaisie  = sha256(mdp);
+    QString hashAttendu = HASH_AUTORISES.value(id);
+
+    if (hashSaisie == hashAttendu)
+    {
         m_tentativesEchouees = 0;
         m_niveauBlocage      = 0;
         ui->statusbar->clearMessage();
@@ -300,30 +359,20 @@ void MainWindow::on_pushButton_Login_clicked()
         dialog->exec();
         delete dialog;
         this->show();
-
-    } else {
-        m_tentativesEchouees++;
-
-        if (m_tentativesEchouees >= 3) {
-            demarrerBlocage();
-        } else {
-            int restantes = 3 - m_tentativesEchouees;
-            QMessageBox::critical(this, "Échec",
-                QString("Identifiant ou mot de passe incorrect.\n"
-                        "%1 tentative(s) restante(s) avant blocage.")
-                    .arg(restantes));
-
-            ui->lineEdit_Password->clear();
-            ui->lineEdit_User_Name->setFocus();
-        }
+    }
+    else
+    {
+        gererEchecConnexion();
     }
 }
 
+// Bouton Annuler
 void MainWindow::on_pushButton_Cancel_clicked()
 {
     this->close();
 }
 
+// Checkbox afficher/masquer mot de passe
 void MainWindow::on_checkBox_stateChanged(int state)
 {
     ui->lineEdit_Password->setEchoMode(

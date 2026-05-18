@@ -23,8 +23,8 @@ Interface_Utilisateur::~Interface_Utilisateur()
 // ── Fonction pour afficher toutes les données dans le tableau ──
 void Interface_Utilisateur::afficherTableau()
 {
-    // Requête SQL pour récupérer les données triées par ID décroissant
-    QSqlQuery query("SELECT id, presence, date, zone FROM mesures_presence ORDER BY id DESC");
+    // Requête SQL pour récupérer les données triées par date décroissant
+    QSqlQuery query("SELECT id, presence, date, zone FROM mesures_presence ORDER BY date DESC");
 
     // Configuration du tableau
     ui->tableWidget->setColumnCount(4);
