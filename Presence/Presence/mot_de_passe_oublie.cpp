@@ -7,9 +7,9 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-// ══════════════════════════════════════════════
+
 //  Constructeur
-// ══════════════════════════════════════════════
+
 mot_de_passe_oublie::mot_de_passe_oublie(const QString &codeBackup, QWidget *parent)
     : QDialog(parent), m_codeBackup(codeBackup)
 {
@@ -77,14 +77,14 @@ mot_de_passe_oublie::mot_de_passe_oublie(const QString &codeBackup, QWidget *par
             this, &mot_de_passe_oublie::on_confirmer);
 }
 
-// ══════════════════════════════════════════════
+
 //  Destructeur
-// ══════════════════════════════════════════════
+
 mot_de_passe_oublie::~mot_de_passe_oublie() {}
 
-// ══════════════════════════════════════════════
+
 //  Bouton Confirmer -> envoi du mail
-// ══════════════════════════════════════════════
+
 void mot_de_passe_oublie::on_confirmer()
 {
     m_btnConfirmer->setEnabled(false);

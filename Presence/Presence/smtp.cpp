@@ -1,8 +1,8 @@
 #include "smtp.h"
 
-// ══════════════════════════════════════════════
+
 //  Constructeur
-// ══════════════════════════════════════════════
+
 Smtp::Smtp(const QString &user, const QString &pass,
            const QString &host, int port)
     : user(user), pass(pass), host(host), port(port), state(Init)
@@ -13,9 +13,9 @@ Smtp::Smtp(const QString &user, const QString &pass,
     connect(socket, SIGNAL(readyRead()),  this, SLOT(readyRead()));
 }
 
-// ══════════════════════════════════════════════
+
 //  Lancement de la connexion
-// ══════════════════════════════════════════════
+
 void Smtp::sendMail(const QString &from, const QString &to,
                     const QString &subject, const QString &body)
 {
@@ -28,17 +28,17 @@ void Smtp::sendMail(const QString &from, const QString &to,
     socket->connectToHostEncrypted(host, port);
 }
 
-// ══════════════════════════════════════════════
+
 //  Connexion etablie
-// ══════════════════════════════════════════════
+
 void Smtp::connected()
 {
     qDebug() << "Connecte au serveur SMTP.";
 }
 
-// ══════════════════════════════════════════════
+
 //  Machine d'etats SMTP complete
-// ══════════════════════════════════════════════
+
 void Smtp::readyRead()
 {
     QString response = socket->readAll();

@@ -33,7 +33,8 @@ private:
 
     bool    m_backupUtilise    = false;
     int     m_backupGeneration = 0;
-    QString m_codeBackupActuel = "";
+    QString m_codeBackupActuel = "";  // hash SHA-256
+    QString m_codeBackupBrut   = "";  // code lisible pour l'email
 
     QTimer *m_timer;
 
