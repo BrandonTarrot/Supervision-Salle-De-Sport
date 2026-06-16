@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AdminWindow</class>
+ <widget class="QMainWindow" name="AdminWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>754</width>
+    <height>577</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>751</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>GroupBox</string>
+    </property>
+    <widget class="QLabel" name="label_Title">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>0</y>
+       <width>151</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Administrateur</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Administrateur">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>20</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/AdminLogo.jpg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView_Display">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>130</y>
+       <width>571</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Display">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>90</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Affichage</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_History">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>90</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Historique</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Management">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>90</y>
+       <width>201</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Gestion</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Luminosite">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>450</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Luminosité</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Temperature">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>450</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Température / Humidité</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Presence">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>450</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Présence</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Refresh">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>130</y>
+       <width>91</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Actualiser</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="tableWidget_Management">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>130</y>
+       <width>571</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView_History">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>130</y>
+       <width>571</width>
+       <height>311</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>20</width>
+       <height>311</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #6e97ff, stop:1 #b8ccff);
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Fan">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>480</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/ventilo_on.gif</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Close">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>450</y>
+       <width>75</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fermer</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Label_bulb_off">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>480</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/bulb_off.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Label_bulb_on">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>480</y>
+       <width>21</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/bulb_on.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Temperature">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>520</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>temperature</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Figure_Green">
+     <property name="geometry">
+      <rect>
+       <x>531</x>
+       <y>480</y>
+       <width>20</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/Green_Figure.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Figure_Red">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>480</y>
+       <width>20</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ressources.qrc">:/images/Ressources/Red_Figure.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Categorie">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Etat_Humidite">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>520</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Humidite</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_Etat_Presence">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>520</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>detection</string>
+     </property>
+    </widget>
+    <zorder>label_Figure_Green</zorder>
+    <zorder>label_Figure_Red</zorder>
+    <zorder>tableView_Display</zorder>
+    <zorder>label_Title</zorder>
+    <zorder>label_Administrateur</zorder>
+    <zorder>pushButton_Display</zorder>
+    <zorder>pushButton_History</zorder>
+    <zorder>pushButton_Management</zorder>
+    <zorder>pushButton_Luminosite</zorder>
+    <zorder>pushButton_Temperature</zorder>
+    <zorder>pushButton_Presence</zorder>
+    <zorder>pushButton_Refresh</zorder>
+    <zorder>tableWidget_Management</zorder>
+    <zorder>tableView_History</zorder>
+    <zorder>frame</zorder>
+    <zorder>label_Fan</zorder>
+    <zorder>pushButton_Close</zorder>
+    <zorder>Label_bulb_off</zorder>
+    <zorder>Label_bulb_on</zorder>
+    <zorder>label_Temperature</zorder>
+    <zorder>label_Categorie</zorder>
+    <zorder>label_Etat_Humidite</zorder>
+    <zorder>label_Etat_Presence</zorder>
+   </widget>
+   <widget class="QLabel" name="label_Etat_Luminosite">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>520</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>état</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>754</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
